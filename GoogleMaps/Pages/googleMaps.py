@@ -38,6 +38,7 @@ class GoogleMaps:
         self.driver.find_element_by_xpath(self.car_button_xpath).click()
 
     def click_options(self):
+        WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.options_button_xpath)))
         self.driver.find_element_by_xpath(self.options_button_xpath).click()
 
     def click_avoid_highways(self):
