@@ -1,5 +1,8 @@
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 from GoogleMaps.Parameters.parameters import Parameters
 from GoogleMaps.Pages.googleMaps import GoogleMaps
 import unittest
@@ -10,7 +13,7 @@ class QaTask(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.driver = webdriver.Chrome(executable_path="./drivers/chromedriver.exe")
+        cls.driver = webdriver.Chrome(executable_path="./GoogleMaps/drivers/chromedriver.exe")
         cls.driver.maximize_window()
         cls.driver.set_page_load_timeout(10)
         cls.driver.implicitly_wait(10)
@@ -57,5 +60,5 @@ class QaTask(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner("./reports"))
+    unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner("./GoogleMaps/reports"))
 
