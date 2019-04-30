@@ -2,7 +2,6 @@ from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
 from GoogleMaps.Parameters.parameters import Parameters
 from GoogleMaps.Pages.googleMaps import GoogleMaps
-import time
 import unittest
 import HtmlTestRunner
 
@@ -18,6 +17,8 @@ class QaTask(unittest.TestCase):
 
     def test_is_page_up(self):
 
+        # if page loads within load timeout verifies title and link
+        # asserts page status at the end
         pagestatus = "page loaded"
         try:
             self.driver.get(Parameters.url)
@@ -51,7 +52,6 @@ class QaTask(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        #time.sleep(5)
         cls.driver.close()
         cls.driver.quit()
 

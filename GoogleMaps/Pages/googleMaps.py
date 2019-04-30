@@ -1,5 +1,7 @@
 from GoogleMaps.Locators.locators import Locators
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 
 
 class GoogleMaps:
@@ -61,9 +63,11 @@ class GoogleMaps:
             self.driver.find_elements_by_xpath(self.all_routes_xpath)[index].click()
 
     def click_details(self):
+        WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.XPATH, self.details_button_xpath)))
         self.driver.find_element_by_xpath(self.details_button_xpath).click()
 
     def get_trip_details(self):
+        # if distance and duration are displayed will return them, if not returns None
         distance = None
         duration = None
         if self.driver.find_element_by_xpath(self.details_duration_xpath).is_displayed():
